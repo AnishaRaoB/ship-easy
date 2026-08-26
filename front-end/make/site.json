@@ -1,0 +1,10 @@
+{
+  "description": "Provides logistics managers with real-time shipping risk analysis and AI-driven recommendations to optimize shipment decisions and routes.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
