@@ -1,7 +1,7 @@
 # load_dotenv() allows us to load ENVIRONMENT VARIABLES (where database url is) from a .env file, so we can use urls for the data.
 from dotenv import load_dotenv
 # when we get the database url from load_dotenv(), we use os.getenv() to read the database url from the ENVRONMENT VARIABLES. if the database url is not provided, we use a safe fallback to a local SQLite database.
-from os
+import os
 # sqlalchemy is the ORM (Object Relational Mapper) that allows us to interact with the database using Python classes and objects instead of writing raw SQL queries. 
 #we use create_engine() to create a connection to the database -- connection config 
 from sqlalchemy import create_engine

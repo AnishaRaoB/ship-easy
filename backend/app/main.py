@@ -1,7 +1,10 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
+from app.database.database import create_database
 from app.routers.product_router import router as product_router
+from app.routers.shipment_router import router as shipment_router
+from app.routers.historical_shipment_router import router as historical_shipment_router
 
 app = FastAPI(
     title="Shipping Risk Predictor API",
@@ -17,14 +20,18 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+@app.on_event("startup")
+def startup_event():
+    create_database()
+
 @app.get("/")
 def root():
     return {"message": "Shipping Risk Predictor API", "status": "running"}
-
 
 @app.get("/health")
 def health():
     return {"status": "healthy"}
 
-
 app.include_router(product_router, prefix="/products", tags=["products"])
+app.include_router(shipment_router, prefix="/shipments", tags=["shipments"])
+app.include_router(historical_shipment_router, prefix="/historical_shipments", tags=["historical_shipments"])
